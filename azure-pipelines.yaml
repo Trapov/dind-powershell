@@ -1,11 +1,11 @@
 trigger:
-  - tag
+  - master
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  tag: 'git describe --exact-match $(Build.SourceVersion)'
+  tag: '$(git describe --exact-match $(Build.SourceVersion))'
 
 steps:
 - script: 
