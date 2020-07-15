@@ -1,15 +1,20 @@
 trigger:
-  - master
+  branches:
+    include:
+    - 'master'
+  tags:
+    include:
+    - '*'
 
 pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-  tag: '$(git describe --exact-match $(Build.SourceVersion))'
+  tag: '${git describe --exact-match $(Build.SourceVersion)}'
 
 steps:
 - script: 
-    docker build -t dind-powershell:$(tag)
+    docker build -t dind-powershell:${tag}
   displayName: Building an image
 
 - script: 
@@ -17,5 +22,5 @@ steps:
   displayName: Logging to docker hub
 
 - script:
-    docker push dind-powershell:$(tag)
+    docker push dind-powershell:${tag}
   displayName: Pushing an image
