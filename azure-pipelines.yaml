@@ -12,16 +12,16 @@ pool:
 
 steps:
 - script:
-    tag=$(git describe --exact-match $(Build.SourceVersion))
+    tag=$(git describe --tags)
     docker build -t dind-powershell:${tag}
   displayName: Building an image
 
 - script:
-    tag=$(git describe --exact-match $(Build.SourceVersion))
+    tag=$(git describe --tags)
     docker login -u $(docker_user) -p $(docker_pass)
   displayName: Logging to docker hub
 
 - script:
-    tag=$(git describe --exact-match $(Build.SourceVersion))
+    tag=$(git describe --tags)
     docker push dind-powershell:${tag}
   displayName: Pushing an image
