@@ -14,10 +14,7 @@ steps:
     docker build -t dind-powershell:$(tag) .
   displayName: Building an image
 
-- script: 
-    docker login -u $(docker_user) -p $(docker_pass)
-  displayName: Logging to docker hub
-
 - script:
+    docker login -u $(docker_user) -p $(docker_pass)
     docker push dind-powershell:$(tag)
   displayName: Pushing an image
