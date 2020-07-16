@@ -9,19 +9,18 @@ trigger:
 pool:
   vmImage: 'Ubuntu-16.04'
 
+variables:
+  tag: '1.0.0'
 
 steps:
-- script:
-    tag=$(git describe --tags)
-    docker build -t dind-powershell:${tag}
+- script: 
+    docker build -t dind-powershell:$(tag)
   displayName: Building an image
 
-- script:
-    tag=$(git describe --tags)
+- script: 
     docker login -u $(docker_user) -p $(docker_pass)
   displayName: Logging to docker hub
 
 - script:
-    tag=$(git describe --tags)
-    docker push dind-powershell:${tag}
+    docker push dind-powershell:$(tag)
   displayName: Pushing an image
