@@ -2,9 +2,6 @@ trigger:
   branches:
     include:
     - 'master'
-  tags:
-    include:
-    - '*'
 
 pool:
   vmImage: 'Ubuntu-16.04'
@@ -14,7 +11,7 @@ variables:
 
 steps:
 - script: 
-    docker build -t dind-powershell:$(tag)
+    docker build -t dind-powershell:$(tag) .
   displayName: Building an image
 
 - script: 
