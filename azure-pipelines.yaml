@@ -11,7 +11,7 @@ variables:
 
 steps:
 - script:
-    docker build -t dind-powershell:$(tag) .
+    docker build -t dmitriyafonin/dind-powershell:$(tag) .
   displayName: Building an image
 
 - script: 
